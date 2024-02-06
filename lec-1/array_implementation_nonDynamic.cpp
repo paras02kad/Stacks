@@ -5,45 +5,32 @@ using namespace std;
 
 class myStack
 {
-private:
-
-int arr;
-int size;
-int indx;
-
 public:
+    int arr[5];
+    int indx;
 
-    myStack(int val)
+    myStack()
     {
-        size = val;
-        arr = new array[size];
         indx = -1;
     }
-    
-    ~myStack()
-    {
-        delete[] arr;
-    }
-
     void push(int val)
     {
-        if (indx == size)
+        if (indx == 5)
         {
             cout << "Stack Overflow" << endl;
             return;
         }
+
         else
         {
-            int data = val;
-            arr[++indx] = data;
-    
+            arr[++indx] = val;
             return;
         }
     }
 
     void pop()
     {
-        if (indx == 0)
+        if (indx == -1)
         {
             cout << "stack underflow" << endl;
             return;
@@ -55,17 +42,15 @@ public:
 
     int top()
     {
-        if (indx >= 0) 
+        if (indx >= 0)
         {
-            int ans = arr[indx];
-            return (ans); 
+            return arr[indx];
         }
         else
         {
             cout << "Stack is empty" << endl;
-            return -1; 
+            return -1;
         }
-
     }
 
     int size()
@@ -77,7 +62,18 @@ public:
 int main()
 {
 
-myStack st(5);
+    myStack st;
+
+    st.push(23);
+
+    cout << st.top() << endl;//23
+
+    st.pop();
+
+    cout << st.size() << endl;//0
+    st.push(33);
+    cout << st.size() << endl;//1
+    cout << st.top() << endl;//33
 
     return 0;
 }
